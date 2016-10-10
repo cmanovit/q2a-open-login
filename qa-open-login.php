@@ -228,10 +228,10 @@ class qa_open_login {
 				'login' => $key,
 			);
 			
-			$url = qa_path('login', $params, qa_path_to_root());
 			if(strlen($tourl) > 0) {
-				$url .= '&amp;to=' . htmlspecialchars($tourl); // play nice with validators
+				$params['to'] = $tourl; // urlencode() will be performed by qa_path() below
 			}
+			$url = qa_path('login', $params, qa_path_to_root());
 			$classes = "$context action-login $zocial  $css";
 			$title = qa_lang_html_sub('plugin_open/login_using', $provider);
 			$text = $provider . ' ' . qa_lang_html('main/nav_login');
